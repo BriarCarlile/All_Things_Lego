@@ -5,41 +5,41 @@ erDiagram
     CatalogSet ||--o{ BarcodeMapping : identified_by
 
     CatalogSet {
-        BIGINT id PK
-        VARCHAR bricklink_no
-        VARCHAR name
+        INT id PK
+        STRING bricklink_no
+        STRING name
         INTEGER year_released
-        VARCHAR theme
-        VARCHAR image_url
-        TIMESTAMP last_synced_at
-        VARCHAR sync_status
-        BIGINT version
-        TIMESTAMP created_at
-        TIMESTAMP updated_at
+        STRING theme
+        STRING image_url
+        INSTANT last_synced_at
+        STRING sync_status
+        INT version
+        INSTANT created_at
+        INSTANT updated_at
     }
 
     OwnedSet {
-        BIGINT id PK
-        BIGINT catalog_set_id FK
+        INT id PK
+        INT catalog_set_id FK
         INTEGER quantity_owned
-        BIGINT storage_location_id FK
-        VARCHAR condition
+        INT storage_location_id FK
+        STRING condition
         DATE purchase_date
-        TIMESTAMP created_at
-        TIMESTAMP updated_at
-        BIGINT version
+        INSTANT created_at
+        INSTANT updated_at
+        INT version
     }
 
     StorageLocation {
-        BIGINT id PK
-        VARCHAR code
-        VARCHAR description
-        TIMESTAMP created_at
-        TIMESTAMP updated_at
+        INT id PK
+        STRING code
+        STRING description
+        INSTANT created_at
+        INSTANT updated_at
     }
 
     BarcodeMapping {
-        VARCHAR barcode PK
-        BIGINT catalog_set_id FK
-        TIMESTAMP last_synced_at
+        STRING barcode PK
+        INT catalog_set_id FK
+        INSTANT last_synced_at
     }
