@@ -2,6 +2,7 @@ package com.allthingslego.inventory.barcodemapping;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -15,8 +16,11 @@ public class BarcodeMapping {
     @Id
     private String barcode;
     
-    private int catalog_set_id;
-    private Instant last_synced_at;
+    @Column(name = "catalog_set_id")
+    private Long catalogSetId;
+    
+    @Column(name = "last_synced_at")
+    private Instant lastSyncedAt;
 
     protected BarcodeMapping() {}
 
@@ -26,7 +30,7 @@ public class BarcodeMapping {
 
     @Override
     public String toString() {
-        return String.format("BarcodeMapping[barcode='%s', catalog_set_id=%d]",
-                this.barcode, this.catalog_set_id);
+        return String.format("BarcodeMapping[barcode='%s', catalogSetId=%d]",
+                this.barcode, this.catalogSetId);
     }
 }

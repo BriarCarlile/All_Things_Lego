@@ -3,6 +3,7 @@ package com.allthingslego.inventory.ownedset;
 import java.time.Instant;
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,29 +19,40 @@ public class OwnedSet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     
-    private int catalog_set_id;
-    private int storage_location_id;
-    private int quantity_owned;
+    @Column(name = "catalog_set_id")
+    private Long catalogSetId;
+    
+    @Column(name = "storage_location_id")
+    private Long storageLocationId;
+    
+    @Column(name = "quantity_owned")
+    private int quantityOwned;
+    
     private String condition;
-    private LocalDate purchase_date;
+    
+    @Column(name = "purchase_date")
+    private LocalDate purchaseDate;
     
     @Version
     private int version;
     
-    private Instant created_at;
-    private Instant updated_at;
+    @Column(name = "created_at")
+    private Instant createdAt;
+    
+    @Column(name = "updated_at")
+    private Instant updatedAt;
 
     protected OwnedSet() {}
 
-    public OwnedSet(int catalog_set_id) {
-        this.catalog_set_id = catalog_set_id;
+    public OwnedSet(Long catalogSetId) {
+        this.catalogSetId = catalogSetId;
     }
 
     @Override
     public String toString() {
-        return String.format("OwnedSet[id=%d, catalog_set_id=%d, quantity=%d, condition='%s']", 
-                this.id, this.catalog_set_id, this.quantity_owned, this.condition);
+        return String.format("OwnedSet[id=%d, catalogSetId=%d, quantity=%d, condition='%s']", 
+                this.id, this.catalogSetId, this.quantityOwned, this.condition);
     }
 }

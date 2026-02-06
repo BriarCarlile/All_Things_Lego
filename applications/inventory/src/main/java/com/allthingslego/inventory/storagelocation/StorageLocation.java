@@ -2,6 +2,7 @@ package com.allthingslego.inventory.storagelocation;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,12 +17,16 @@ public class StorageLocation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     
     private String code;
     private String description;
-    private Instant created_at;
-    private Instant updated_at;
+    
+    @Column(name = "created_at")
+    private Instant createdAt;
+    
+    @Column(name = "updated_at")
+    private Instant updatedAt;
 
     protected StorageLocation() {}
 

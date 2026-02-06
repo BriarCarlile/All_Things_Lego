@@ -5,7 +5,7 @@ erDiagram
     CatalogSet ||--o{ BarcodeMapping : identified_by
 
     CatalogSet {
-        INT id PK
+        LONG id PK
         STRING bricklink_no
         STRING name
         INTEGER year_released
@@ -19,8 +19,8 @@ erDiagram
     }
 
     OwnedSet {
-        INT id PK
-        INT catalog_set_id FK
+        LONG id PK
+        LONG catalog_set_id FK
         INTEGER quantity_owned
         INT storage_location_id FK
         STRING condition
@@ -31,7 +31,7 @@ erDiagram
     }
 
     StorageLocation {
-        INT id PK
+        LONG id PK
         STRING code
         STRING description
         INSTANT created_at
@@ -40,6 +40,6 @@ erDiagram
 
     BarcodeMapping {
         STRING barcode PK
-        INT catalog_set_id FK
+        LONG catalog_set_id FK
         INSTANT last_synced_at
     }

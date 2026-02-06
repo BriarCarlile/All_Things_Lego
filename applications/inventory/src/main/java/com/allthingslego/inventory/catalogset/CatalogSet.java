@@ -2,11 +2,13 @@ package com.allthingslego.inventory.catalogset;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,28 +26,46 @@ public class CatalogSet {
             strategy = GenerationType.SEQUENCE,
             generator = "catalogSet_sequence"
     )
-    private int id;
-    private String bricklink_no;
+    private Long id;
+    
+    @Column(name = "bricklink_no")
+    private String bricklinkNo;
+    
     private String name;
-    private int year_released;
+    
+    @Column(name = "year_released")
+    private int yearReleased;
+    
     private String theme;
-    private String image_url;
-    private Instant last_synced_at;
-    private String sync_status;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
+    
+    @Column(name = "last_synced_at")
+    private Instant lastSyncedAt;
+    
+    @Column(name = "sync_status")
+    private String syncStatus;
+    
+    @Version
     private int version;
-    private Instant created_at;
-    private Instant updated_at;
+    
+    @Column(name = "created_at")
+    private Instant createdAt;
+    
+    @Column(name = "updated_at")
+    private Instant updatedAt;
 
     protected CatalogSet() {}
 
-    public CatalogSet(String bricklink_no) {
-        this.bricklink_no = bricklink_no;
+    public CatalogSet(String bricklinkNo) {
+        this.bricklinkNo = bricklinkNo;
     }
 
     @Override
     public String toString() {
-        return String.format("CatalogSet[id=%d, bricklink_no='%s', name='%s', year=%d, theme='%s', sync_status='%s']",
-                this.id, this.bricklink_no, this.name, this.year_released, this.theme, this,sync_status);
+        return String.format("CatalogSet[id=%d, bricklinkNo='%s', name='%s', year=%d, theme='%s', syncStatus='%s']",
+                this.id, this.bricklinkNo, this.name, this.yearReleased, this.theme, this.syncStatus);
     }
 
 }
