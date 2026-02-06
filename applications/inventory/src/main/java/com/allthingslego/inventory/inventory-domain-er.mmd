@@ -1,0 +1,45 @@
+erDiagram
+
+    CatalogSet ||--o{ OwnedSet : owned_as
+    StorageLocation ||--o{ OwnedSet : stores
+    CatalogSet ||--o{ BarcodeMapping : identified_by
+
+    CatalogSet {
+        BIGINT id PK
+        VARCHAR bricklink_no
+        VARCHAR name
+        INTEGER year_released
+        VARCHAR theme
+        VARCHAR image_url
+        TIMESTAMP last_synced_at
+        VARCHAR sync_status
+        BIGINT version
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    OwnedSet {
+        BIGINT id PK
+        BIGINT catalog_set_id FK
+        INTEGER quantity_owned
+        BIGINT storage_location_id FK
+        VARCHAR condition
+        DATE purchase_date
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+        BIGINT version
+    }
+
+    StorageLocation {
+        BIGINT id PK
+        VARCHAR code
+        VARCHAR description
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    BarcodeMapping {
+        VARCHAR barcode PK
+        BIGINT catalog_set_id FK
+        TIMESTAMP last_synced_at
+    }
