@@ -1,0 +1,12 @@
+version: '0.91'
+services:
+  mysql:
+    image: 'mysql:latest'
+    container_name: LEGOInventorySqlLocalContainer
+    environment:
+      - 'MYSQL_DATABASE=${LOCAL_DB_NAME}'
+      - 'MYSQL_PASSWORD=${LOCAL_DB_PASS}'
+      - 'MYSQL_ROOT_PASSWORD=${LOCAL_DB_ROOT_PASS}'
+      - 'MYSQL_USER=${LOCAL_DB_USER}'
+    ports:
+      - 3306:3306
