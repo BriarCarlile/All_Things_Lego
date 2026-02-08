@@ -5,7 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
-@RepositoryRestResource(collectionResourceRel="owned_set", path="owned_set")
+@RepositoryRestResource(collectionResourceRel="owned_set", path="owned_set", excerptProjection=OwnedSetDTO.class)
 public interface OwnedSetRepository extends PagingAndSortingRepository<OwnedSet, Long>,
 CrudRepository<OwnedSet, Long>{
 
