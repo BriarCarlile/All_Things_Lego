@@ -10,6 +10,6 @@ public interface OwnedSetDTO {
     Long getCatalogSetId();
     Long getStorageLocationId();
     int getQuantity();
-    String getCondition();
+    String getSetCondition();
     LocalDate getPurchaseDate();
 }

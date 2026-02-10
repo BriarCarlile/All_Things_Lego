@@ -29,8 +29,9 @@ public class OwnedSet {
     
     @Column(name = "quantity_owned")
     private int quantityOwned;
-    
-    private String condition;
+
+    @Column(name = "set_condition")
+    private String setCondition;
     
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
@@ -53,6 +54,6 @@ public class OwnedSet {
     @Override
     public String toString() {
         return String.format("OwnedSet[id=%d, catalogSetId=%d, quantity=%d, condition='%s']", 
-                this.id, this.catalogSetId, this.quantityOwned, this.condition);
+                this.id, this.catalogSetId, this.quantityOwned, this.setCondition);
     }
 }
