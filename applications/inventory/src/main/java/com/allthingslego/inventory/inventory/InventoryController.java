@@ -20,7 +20,7 @@ public class InventoryController {
     @GetMapping("/owned-sets/{id}")
     public ResponseEntity<OwnedSetDetailResponseDTO> getOwnedSetDetails(@PathVariable Long id) {
         log.info("Retrieving owned set details for {}", id);
-        OwnedSetDetailResponseDTO details = inventoryService.getOwnedSetDetails(id);
+        OwnedSetDetailResponseDTO details = inventoryService.getOwnedSetDetailsByOwnedSetID(id);
         return ResponseEntity.ok(details);
     }
 }

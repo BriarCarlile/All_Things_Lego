@@ -1,6 +1,8 @@
 package com.allthingslego.inventory.inventory;
 
 
+import com.allthingslego.inventory.barcodemapping.BarcodeMapping;
+import com.allthingslego.inventory.barcodemapping.BarcodeMappingRepository;
 import com.allthingslego.inventory.catalogset.CatalogSet;
 import com.allthingslego.inventory.catalogset.CatalogSetRepository;
 import com.allthingslego.inventory.inventory.dto.OwnedSetDetailResponseDTO;
@@ -21,9 +23,10 @@ public class InventoryService {
     private final OwnedSetRepository ownedSetRepository;
     private final CatalogSetRepository catalogSetRepository;
     private final StorageLocationRepository storageLocationRepository;
+    private final BarcodeMappingRepository barcodeMappingRepository;
 
     @Transactional
-    public OwnedSetDetailResponseDTO getOwnedSetDetails(Long ownedSetId) {
+    public OwnedSetDetailResponseDTO getOwnedSetDetailsByOwnedSetID(Long ownedSetId) {
         OwnedSet ownedSet = ownedSetRepository.findById(ownedSetId)
             .orElseThrow(() -> new RuntimeException("Could not find owned set"));
 
@@ -54,6 +57,47 @@ public class InventoryService {
                 location.getId(),
                 location.getCode(),
                 location.getDescription()
+            ) : null
+        );
+    }
+
+    @Transactional
+    public OwnedSetDetailResponseDTO getOwnedSetDetailsByBarcode(String barcode) {
+
+        BarcodeMapping barcodeMapping = barcodeMappingRepository.findByBarcode(barcode)
+            .orElseThrow(() -> new RuntimeException("Could not find barcode mapping"));
+
+        OwnedSet ownedSet = ownedSetRepository.findByCatalogSetId(barcodeMapping.getCatalogSetId())
+            .orElseThrow(() -> new RuntimeException("Could not find owned set"));
+
+        CatalogSet catalogSet = catalogSetRepository.findById(barcodeMapping.getCatalogSetId())
+            .orElseThrow(() -> new RuntimeException("Could not find catalog set"));
+
+        StorageLocation location = null;
+        if (ownedSet.getStorageLocationId() != null) {
+            location = storageLocationRepository.findById(ownedSet.getStorageLocationId())
+                .orElse(null);
+        }
+
+//        OwnedSet ownedSet = ownedSetRepository.findBy
+        return new OwnedSetDetailResponseDTO(
+            ownedSet.getId(),
+            ownedSet.getQuantityOwned(),
+            ownedSet.getSetCondition(),
+            ownedSet.getPurchaseDate(),
+            new OwnedSetDetailResponseDTO.CatalogSetInfo(
+                    catalogSet.getId(),
+                    catalogSet.getBricklinkNo(),
+                    catalogSet.getName(),
+                    catalogSet.getYearReleased(),
+                    catalogSet.getTheme(),
+                    catalogSet.getImageUrl(),
+                    catalogSet.getSyncStatus()
+            ),
+            location != null ? new OwnedSetDetailResponseDTO.StorageLocationInfo(
+                    location.getId(),
+                    location.getCode(),
+                    location.getDescription()
             ) : null
         );
     }
