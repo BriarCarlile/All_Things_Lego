@@ -12,7 +12,7 @@ erDiagram
         STRING theme
         STRING image_url
         INSTANT last_synced_at
-        STRING sync_status
+        ENUM sync_status
         INT version
         INSTANT created_at
         INSTANT updated_at
@@ -21,13 +21,14 @@ erDiagram
     OwnedSet {
         LONG id PK
         LONG catalog_set_id FK
-        INTEGER quantity_owned
-        INT storage_location_id FK
-        STRING condition
+        LONG storage_location_id FK
+        ENUM condition
         DATE purchase_date
+        INSTANT sold_at
         INSTANT created_at
         INSTANT updated_at
         INT version
+        STRING acquisition_method
     }
 
     StorageLocation {
@@ -41,5 +42,12 @@ erDiagram
     BarcodeMapping {
         STRING barcode PK
         LONG catalog_set_id FK
-        INSTANT last_synced_at
+    }
+
+    InventoryEvent {
+        LONG id PK
+        LONG owned_set_id FK
+        STRING event_type
+        STRING details
+        INSTANT created_at
     }

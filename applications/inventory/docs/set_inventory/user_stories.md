@@ -17,8 +17,8 @@ They guide backend API design, domain modeling, and frontend implementation.
 ## Update Set State
 
 * As a user, I want to update a set’s condition (e.g., sealed, opened, built).
-* As a user, I want to mark a set as sold or removed from my inventory.
 * As a user, I want to view the acquisition timestamp for a specific set.
+* As a user, I want to mark a set as SOLD instead of deleting it so that historical ownership is preserved.
 * As a user, I want to view the history of changes made to a specific set.
 
 ---
