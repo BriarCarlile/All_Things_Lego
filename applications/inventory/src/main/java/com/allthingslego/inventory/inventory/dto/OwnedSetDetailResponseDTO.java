@@ -1,12 +1,16 @@
 package com.allthingslego.inventory.inventory.dto;
 
+import com.allthingslego.inventory.structures.SetCondition;
+import com.allthingslego.inventory.structures.SyncStatus;
+
 import java.time.LocalDate;
 
 public record OwnedSetDetailResponseDTO(
         Long id,
-        int quantityOwned,
-        String condition,
+        SetCondition condition,
         LocalDate purchaseDate,
+        LocalDate soldAt,
+        String acquisitionMethod,
         CatalogSetInfo catalogSet,
         StorageLocationInfo storageLocation
 ) {
@@ -17,7 +21,7 @@ public record OwnedSetDetailResponseDTO(
         int yearReleased,
         String theme,
         String imageUrl,
-        String syncStatus
+        SyncStatus syncStatus
     ) {}
 
     public record StorageLocationInfo(

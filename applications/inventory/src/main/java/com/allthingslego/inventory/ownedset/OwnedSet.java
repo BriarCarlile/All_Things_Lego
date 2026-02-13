@@ -3,6 +3,7 @@ package com.allthingslego.inventory.ownedset;
 import java.time.Instant;
 import java.time.LocalDate;
 
+import com.allthingslego.inventory.structures.SetCondition;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,15 +27,18 @@ public class OwnedSet {
     
     @Column(name = "storage_location_id")
     private Long storageLocationId;
-    
-    @Column(name = "quantity_owned")
-    private int quantityOwned;
 
     @Column(name = "set_condition")
-    private String setCondition;
+    private SetCondition setCondition;
     
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
+
+    @Column(name = "sold_at")
+    private LocalDate soldAt;
+
+    @Column(name = "acquisition_method")
+    private String acquisitionMethod;
     
     @Version
     private int version;
@@ -53,7 +57,7 @@ public class OwnedSet {
 
     @Override
     public String toString() {
-        return String.format("OwnedSet[id=%d, catalogSetId=%d, quantity=%d, condition='%s']", 
-                this.id, this.catalogSetId, this.quantityOwned, this.setCondition);
+        return String.format("OwnedSet[id=%d, catalogSetId=%d, condition='%s']",
+                this.id, this.catalogSetId, this.setCondition);
     }
 }

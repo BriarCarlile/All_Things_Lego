@@ -41,9 +41,10 @@ public class InventoryService {
 
         return new OwnedSetDetailResponseDTO(
             ownedSet.getId(),
-            ownedSet.getQuantityOwned(),
             ownedSet.getSetCondition(),
             ownedSet.getPurchaseDate(),
+            ownedSet.getSoldAt(),
+            ownedSet.getAcquisitionMethod(),
             new OwnedSetDetailResponseDTO.CatalogSetInfo(
                     catalogSet.getId(),
                     catalogSet.getBricklinkNo(),
@@ -82,9 +83,10 @@ public class InventoryService {
 //        OwnedSet ownedSet = ownedSetRepository.findBy
         return new OwnedSetDetailResponseDTO(
             ownedSet.getId(),
-            ownedSet.getQuantityOwned(),
             ownedSet.getSetCondition(),
             ownedSet.getPurchaseDate(),
+            ownedSet.getSoldAt(),
+            ownedSet.getAcquisitionMethod(),
             new OwnedSetDetailResponseDTO.CatalogSetInfo(
                     catalogSet.getId(),
                     catalogSet.getBricklinkNo(),

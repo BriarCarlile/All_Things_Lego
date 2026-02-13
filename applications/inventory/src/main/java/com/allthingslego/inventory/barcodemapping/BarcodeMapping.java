@@ -18,9 +18,6 @@ public class BarcodeMapping {
     
     @Column(name = "catalog_set_id")
     private Long catalogSetId;
-    
-    @Column(name = "last_synced_at")
-    private Instant lastSyncedAt;
 
     protected BarcodeMapping() {}
 

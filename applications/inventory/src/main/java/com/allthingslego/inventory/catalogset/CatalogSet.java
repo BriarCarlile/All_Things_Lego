@@ -2,6 +2,7 @@ package com.allthingslego.inventory.catalogset;
 
 import java.time.Instant;
 
+import com.allthingslego.inventory.structures.SyncStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class CatalogSet {
     private Instant lastSyncedAt;
     
     @Column(name = "sync_status")
-    private String syncStatus;
+    private SyncStatus syncStatus;
     
     @Version
     private int version;
